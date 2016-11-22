@@ -11,3 +11,13 @@ testdata <- stagec3[ind==2,]
 rf <- randomForest(ploidy~.,data=traindata,ntree=100,proximity=TRUE)
 table(predict(rf),traindata$ploidy)
 print(rf)
+
+plot(rf)
+
+importance(rf)
+varImpPlot(rf)
+
+rf.pred<-predict(rf,newdata=testdata)
+table(rf.pred,testdata$ploidy)
+
+plot(margin(rf))
