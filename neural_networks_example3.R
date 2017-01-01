@@ -1,0 +1,13 @@
+library(neuralnet)
+train.input <- as.data.frame(runif(50, min=0,max=100))
+train.output <- sqrt(train.input)
+train.data <- cbind(train.input,train.output)
+colnames(train.data)<-c("Input","Output")
+head(train.data)
+net.sqrt <- neuralnet(Output~Input,train.data,hidden=10,threshold = 0.01)
+print(net.sqrt)
+plot(net.sqrt)
+
+test.data <- as.data.frame((1:10)^2)
+test.out <- compute(net.sqrt, test.data)
+ls(test.out)
